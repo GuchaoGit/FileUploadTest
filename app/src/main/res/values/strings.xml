@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FileUploadTest</string>
+    <string name="upload_manager">上传管理</string>
+    <string name="stop_upload_service">停止上传服务</string>
 </resources>

@@ -19,6 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".aty.ActivityUploadManager"
+            android:label="@string/upload_manager"></activity>
+
+        <service android:name=".service.ServiceUpload" />
     </application>
 
 </manifest>

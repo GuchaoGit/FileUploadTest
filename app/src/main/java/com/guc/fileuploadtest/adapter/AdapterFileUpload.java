@@ -6,9 +6,9 @@ import android.view.View;
 import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.guc.fileuploadtest.R;
 import com.guc.fileuploadtest.app.CustomApplication;
 import com.guc.fileuploadtest.bean.BeanWaitUpload;
-import com.guc.fileuploadtest.R;
 import com.guc.fileuploadtest.greendao.BeanWaitUploadDao;
 import com.guc.fileuploadtest.utils.URLUtils;
 import com.guc.fileuploadtest.utils.fileuploaduitl.BeanUploadFile;
@@ -48,6 +48,7 @@ public class AdapterFileUpload extends CommonRecycleAdapter<BeanWaitUpload> {
                 notifyDataSetChanged();
                 List<String> paths = mGson.fromJson(data.paths,new TypeToken<List<String>>(){}.getType());
                 Map<String,String> params = mGson.fromJson(data.params,new TypeToken<Map<String,String>>(){}.getType());
+                mDao.update(data);
                 UploadFileUtil.imageUpLoad(mContext,data,paths,params, URLUtils.URL_FILE_SERVER,new UploadFileCallback(){
                     @Override
                     public void onFailure(Object tag) {
