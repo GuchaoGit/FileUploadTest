@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ViewCommonTitle">
+        <attr name="titles" format="reference"></attr>
+    </declare-styleable>
+
+    <!--圆角ImageView-->
+    <declare-styleable name="RoundImageView">
+        <attr name="borderRadius" />
+        <attr name="type" />
+    </declare-styleable>
+    <attr name="borderRadius" format="dimension" />
+    <attr name="type">
+        <enum name="circle" value="0" />
+        <enum name="round" value="1" />
+    </attr>
+    <!--可滑动的切换的CardView-->
+    <declare-styleable name="SwipeFlingAdapterView">
+        <attr name="y_offset_step" format="dimension" />
+        <attr name="rotation_degrees" format="float" />
+        <attr name="min_adapter_stack" format="integer" />
+        <attr name="max_visible" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomSpinner">
+        <attr name="assets_name" format="string" />
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            zipAlignEnabled false
+        }
+
+        beta {
+            minifyEnabled false
+            zipAlignEnabled false
+        }
+
+        release {
+            //混淆
+            minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':ui')
+    api project(':imagepicker')
+    api "io.reactivex:rxjava:$rootProject.rxjavaVersion"
+    api "io.reactivex:rxandroid:$rootProject.rxandroidVersion"
+    api "com.blankj:utilcode:$rootProject.utilcodeVersion"
+    api "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    api "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpLoggingInterceptorVersion"
+    api "com.google.code.gson:gson:$rootProject.gsonVersion"
+    implementation "com.github.f0ris.sweetalert:library:$rootProject.sweetalertVersion"
+    implementation "com.qianwen:update-app:$rootProject.updateAppVersion"
+    implementation "com.zhy:okhttputils:$rootProject.okhttputilsVersion"
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    implementation 'com.github.codbking:PickTime:v1.0.1'
+}

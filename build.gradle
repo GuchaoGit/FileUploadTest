@@ -1,0 +1,59 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.1'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2' // add plugin
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    compileSdkVersion = 27
+    buildToolsVersion = "27.0.3"
+    targetSdkVersion = 22
+    minSdkVersion = 19
+    versionCode = 1
+    versionName = "1.0"
+    beta_number = 1
+
+    // App dependencies
+    supportLibraryVersion = "27.1.1"
+    buttferKnifeVersion='8.5.1'
+    okhttpVersion = "3.10.0"
+    okhttpLoggingInterceptorVersion = "3.9.0"
+    circleimageviewVersion ='2.1.0'
+    constraintLayoutVersion = "1.0.2"
+    rxjavaVersion = "1.2.1"
+    rxandroidVersion = "1.2.1"
+    gsonVersion = "2.8.2"
+    glideVersion = "4.7.1"
+    utilcodeVersion = "1.13.4"
+
+    sweetalertVersion = "1.5.1"
+    updateAppVersion = "3.3.8"
+    okhttputilsVersion = "2.6.2"
+
+    photoviewVersion = "1.2.4"
+    wraplayoutVersion="1.2.1"
+    zxingVersion="v1.0.3"
+}

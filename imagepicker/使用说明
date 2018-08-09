@@ -1,0 +1,66 @@
+     //ImagePicker 初始化
+    private void initImagePicker() {
+        imagePicker = ImagePicker.getInstance();
+        imagePicker.setImageLoader(new GlideImageLoader());
+        imagePicker.setShowCamera(true);
+        imagePicker.setSelectLimit(1);
+        imagePicker.setCrop(false);
+    }
+
+      /**
+         * 跳转至预览界面
+         */
+        private void jumpPicsPreview(int position) {
+            Intent intentPreview = new Intent(ImagePickerTest.this, ImagePreviewDelActivity.class);
+            intentPreview.putExtra(ImagePicker.EXTRA_IMAGE_ITEMS, images);
+            intentPreview.putExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, position);
+            intentPreview.putExtra(ImagePicker.EXTRA_FROM_ITEMS, true);
+            intentPreview.putExtra("showDel", false);
+            startActivityForResult(intentPreview, REQUEST_CODE_PREVIEW);
+        }
+
+         /**
+             * 跳转至图片选择
+             */
+            private void jumpPicsSelect() {
+                ImagePicker.getInstance().setSelectLimit(maxNum);
+                Intent intent1 = new Intent(this, ImageGridActivity.class);
+                intent1.putExtra(ImageGridActivity.EXTRAS_IMAGES, images);
+                startActivityForResult(intent1, REQUEST_CODE_SELECT);
+            }
+
+          /**
+              * 直接拍照
+              */
+             private void takePics() {
+                 ImagePicker.getInstance().takePicture(this, 500);
+             }
+
+             /**
+                *数据回调
+                */
+           @Override
+             protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+                 super.onActivityResult(requestCode, resultCode, data);
+
+                 if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
+                     if (data != null && requestCode == 100) {
+                         //noinspection unchecked
+                         images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+                         if (images != null && images.size() > 0) {
+                         }
+                     }
+                 } else if (resultCode == ImagePicker.RESULT_CODE_BACK) {
+                     //预览图片返回
+                     if (data != null && requestCode == REQUEST_CODE_PREVIEW) {
+                         images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_IMAGE_ITEMS);
+                         if (images != null && images.size() > 0) {
+                         }
+                     }
+                 } else if (requestCode == 500) {//直接拍照返回
+                     if (resultCode == 0) return;
+                     //发送广播通知图片增加了
+                     ImagePicker.galleryAddPic(this, imagePicker.getTakeImageFile());
+                     String path = imagePicker.getTakeImageFile().getAbsolutePath();
+                 }
+             }
