@@ -7,6 +7,10 @@ import com.blankj.utilcode.util.Utils;
 import com.guc.fileuploadtest.greendao.DaoMaster;
 import com.guc.fileuploadtest.greendao.DaoSession;
 import com.hnhy.framework.BaseProfile;
+import com.zero.cdownload.CDownload;
+import com.zero.cdownload.config.CDownloadConfig;
+import com.zero.cdownload.config.ConnectConfig;
+import com.zero.cdownload.config.ThreadPoolConfig;
 
 /**
  * Created by guc on 2018/8/8.
@@ -27,6 +31,7 @@ public class CustomApplication extends Application {
         BaseProfile.initProfile(this,null);
         Utils.init(this);
         setDatabase();
+        initDownload();
     }
 
     public static CustomApplication getInstances(){
@@ -52,6 +57,19 @@ public class CustomApplication extends Application {
     }
     public SQLiteDatabase getDb() {
         return db;
+    }
+
+
+    private void initDownload() {
+        CDownloadConfig downloadConfig = CDownloadConfig.build()
+
+                .setDiskCachePath("/sdcard/Download")
+
+                .setConnectConfig(ConnectConfig.build().setConnectTimeOut(10000).setReadTimeOut(20000))
+
+                .setIoThreadPoolConfig(ThreadPoolConfig.build().setCorePoolSize(4).setMaximumPoolSize(100).setKeepAliveTime(60));
+
+        CDownload.getInstance().init(downloadConfig);
     }
 
 }

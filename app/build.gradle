@@ -37,4 +37,6 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.2' // add library
     implementation 'org.greenrobot:greendao-generator:3.2.2'
 
+    implementation 'com.github.zerochl:ClassicDownload:1.0.5'
+
 }

@@ -10,6 +10,7 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.guc.fileuploadtest.adapter.AdapterFileUpload;
 import com.guc.fileuploadtest.app.CustomApplication;
+import com.guc.fileuploadtest.aty.ActivityDownload;
 import com.guc.fileuploadtest.aty.ActivityUploadManager;
 import com.guc.fileuploadtest.bean.BeanWaitUpload;
 import com.guc.fileuploadtest.greendao.BeanWaitUploadDao;
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick({R.id.btn_upload_manager, R.id.btn_stop_service})
+    @OnClick({R.id.btn_upload_manager, R.id.btn_stop_service, R.id.btn_download})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_upload_manager:
@@ -106,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_stop_service:
                 stopService(new Intent(this, ServiceUpload.class));
+                break;
+            case R.id.btn_download:
+                startActivity(new Intent(this, ActivityDownload.class));
                 break;
         }
 

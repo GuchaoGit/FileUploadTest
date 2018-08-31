@@ -33,8 +33,10 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api project(':ui')
     api project(':imagepicker')
-    api "io.reactivex:rxjava:$rootProject.rxjavaVersion"
-    api "io.reactivex:rxandroid:$rootProject.rxandroidVersion"
+//    api "io.reactivex:rxjava:$rootProject.rxjavaVersion"
+//    api "io.reactivex:rxandroid:$rootProject.rxandroidVersion"
+    api "io.reactivex.rxjava2:rxjava:2.1.9"
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
     api "com.blankj:utilcode:$rootProject.utilcodeVersion"
     api "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
     api "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpLoggingInterceptorVersion"

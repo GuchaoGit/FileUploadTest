@@ -22,6 +22,9 @@
         <activity
             android:name=".aty.ActivityUploadManager"
             android:label="@string/upload_manager"></activity>
+        <activity
+            android:name=".aty.ActivityDownload"
+            android:label="@string/upload_manager"></activity>
 
         <service android:name=".service.ServiceUpload" />
     </application>
