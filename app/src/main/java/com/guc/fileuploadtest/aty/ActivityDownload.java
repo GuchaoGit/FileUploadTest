@@ -39,31 +39,29 @@ public class ActivityDownload extends Activity {
             @Override
             public void onPreStart() {
                 Log.e("guc", "onPreStart");
+                runOnUiThread(() ->
+                        mBtnDowmload.setText(String.format("开始下载"))
+                );
             }
 
             @Override
             public void onProgress(final long maxSIze, final long currentSize) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        int cur = (int) (currentSize * 100 / maxSIze);
-                        mPbProgressbar.setProgress(cur);
-                        Log.e("guc", "in onProgress cur percent:" + cur);
-                        mBtnDowmload.setText(String.format("已下载：%d/100", cur));
-                    }
-                });
+                runOnUiThread(() -> {
+                            int cur = (int) (currentSize * 100 / maxSIze);
+                            mPbProgressbar.setProgress(cur);
+                            Log.e("guc", "in onProgress cur percent:" + cur);
+                            mBtnDowmload.setText(String.format("已下载：%d/100", cur));
+                        }
+                );
                 Log.e("guc", "in onProgress maxSIze:" + maxSIze + ";currentSize:" + currentSize);
             }
 
             @Override
             public void onComplete(final String localFilePath) {
                 Log.e("guc", "onComplete localFilePath:" + localFilePath);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mBtnDowmload.setText(String.format("已下载：%s", localFilePath));
-                    }
-                });
+                runOnUiThread(() ->
+                        mBtnDowmload.setText(String.format("已下载：%s", localFilePath))
+                );
             }
 
             @Override
